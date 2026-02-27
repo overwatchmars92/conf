@@ -76,12 +76,25 @@ body {
 .hero {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 100px 20px;
+    padding: 80px 20px;
     text-align: center;
-    min-height: 400px;
+    min-height: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.hero-container {
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    width: 100%;
+}
+
+.hero-content {
+    text-align: left;
 }
 
 .hero-content h2 {
@@ -94,6 +107,25 @@ body {
     font-size: 20px;
     margin-bottom: 30px;
     opacity: 0.95;
+}
+
+.hero-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.hero-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.hero-img:hover {
+    transform: scale(1.05);
 }
 
 .cta-button {
@@ -155,15 +187,41 @@ body {
 .news-card {
     background: #f8f9fa;
     border-radius: 8px;
-    padding: 25px;
+    padding: 0;
     border-left: 5px solid #667eea;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.news-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.news-card:hover .news-image {
+    transform: scale(1.05);
 }
 
 .news-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.news-card > *:not(.news-image) {
+    padding: 0 25px;
+}
+
+.news-card > div:first-of-type,
+.news-card > h3,
+.news-card > p,
+.news-card > a {
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
 .news-date {
@@ -172,18 +230,25 @@ body {
     font-size: 12px;
     text-transform: uppercase;
     margin-bottom: 10px;
+    padding-top: 20px;
+    padding-bottom: 0;
 }
 
 .news-card h3 {
     font-size: 20px;
     margin-bottom: 12px;
     color: #1e3a8a;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .news-card p {
     color: #666;
     margin-bottom: 15px;
     line-height: 1.7;
+    padding-top: 0;
+    padding-bottom: 0;
+    flex-grow: 1;
 }
 
 .read-more {
@@ -192,6 +257,7 @@ body {
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease;
+    margin-bottom: 20px;
 }
 
 .read-more:hover {
@@ -293,6 +359,90 @@ body {
 .btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    display: inline-block;
+    background-color: white;
+    color: #667eea;
+    padding: 12px 28px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 2px solid #667eea;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.btn-secondary:hover {
+    background-color: #667eea;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* ==================== Poster Section ==================== */
+
+.poster {
+    padding: 80px 20px;
+    background-color: white;
+}
+
+.poster .container h2 {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 50px;
+    color: #1e3a8a;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.poster .container h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 2px;
+}
+
+.poster-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.poster-image {
+    text-align: center;
+}
+
+.poster-thumb {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.poster-thumb:hover {
+    transform: translateY(-5px);
+}
+
+.poster-info h3 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #1e3a8a;
+}
+
+.poster-info p {
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 30px;
 }
 
 /* ==================== À Propos Section ==================== */
@@ -489,6 +639,14 @@ body {
         gap: 15px;
     }
 
+    .hero-container {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-content {
+        text-align: center;
+    }
+
     .hero-content h2 {
         font-size: 36px;
     }
@@ -498,12 +656,13 @@ body {
     }
 
     .hero {
-        min-height: 300px;
+        min-height: auto;
         padding: 60px 20px;
     }
 
     .about-content,
-    .contact-content {
+    .contact-content,
+    .poster-content {
         grid-template-columns: 1fr;
     }
 
@@ -525,6 +684,11 @@ body {
     .events-list,
     .news-grid {
         grid-template-columns: 1fr;
+    }
+
+    .btn-secondary {
+        margin-left: 0;
+        margin-top: 10px;
     }
 }
 
